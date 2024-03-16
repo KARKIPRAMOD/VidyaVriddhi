@@ -70,7 +70,7 @@ if (!isset ($_SESSION['username'])) {
                     <ul>
                         <li> <img src="../images/icone.png"> </li>
                         <li class="" id=""> Profile</li>
-                        <li class="" id=""> Logout</li>
+                        <li> <a href="../students/logout.php"> Logout </a></li>
                     </ul>
                 </div>
             </div>

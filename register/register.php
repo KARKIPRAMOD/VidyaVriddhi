@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="submit">
-                            <textarea type="textarea" name="description" id="description"
+                            <textarea type="textarea" name="description" id="description">
                                 placeholder="Write about you"></textarea>
                             <button type="submit" name="submit" class="btn-primary takespace">Register</button>
                         </div>
