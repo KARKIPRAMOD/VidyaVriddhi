@@ -12,12 +12,9 @@
     <h1>Course Reviews</h1>
     
     <?php
-// Assuming you've already connected to your database
 
-// Assuming you have a course ID in your URL parameter
 $course_id = $_GET['course_id'];
 
-// Get course details
 $sql = "SELECT * FROM Courses WHERE course_id = $course_id";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -30,10 +27,9 @@ if ($result->num_rows > 0) {
     exit;
 }
 
-// Get reviews for the course along with the names of the students who wrote them
-$sql = "SELECT r.rating, r.review_text, s.student_name
+$sql = "SELECT r.rating, r.review_text, l.fname
         FROM Reviews r
-        JOIN Students s ON r.student_id = s.student_id
+        JOIN learner l ON r. learner_id = l.id
         WHERE r.course_id = $course_id";
 $result = $conn->query($sql);
 $reviews = [];
@@ -71,7 +67,7 @@ if ($result->num_rows > 0) {
                 echo "<div class='review'>";
                 echo "<p><strong>Rating:</strong> {$review['rating']}</p>";
                 echo "<p><strong>Review:</strong> {$review['review_text']}</p>";
-                echo "<p><strong>Student:</strong> {$review['student_name']}</p>";
+                echo "<p><strong>Student:</strong> {$review['fname']}</p>";
                 echo "</div>";
             }
         } ?>

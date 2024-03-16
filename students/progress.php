@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assessments</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="progress.css">
 </head>
 <body>
     <?php
     include_once('../database/db_connect.php');
+    include_once('header.php');
     session_start();
 
     if (isset($_SESSION['username'])) {
@@ -25,36 +26,43 @@
             $result_enrolled_courses = $conn->query($sql_enrolled_courses);
 
             if ($result_enrolled_courses->num_rows > 0) {
+                echo "<div class='container'>";
                 while ($row_enrolled_course = $result_enrolled_courses->fetch_assoc()) {
                     $course_id = $row_enrolled_course['course_id'];
+
+                    $sql_course_name = "SELECT course_name FROM courses WHERE course_id = '$course_id'";
+                    $result_course_name = $conn->query($sql_course_name);
+                    $row_course_name = $result_course_name->fetch_assoc();
+                    $course_name = $row_course_name['course_name'];
 
                     $sql_assessments = "SELECT id, title FROM assessments WHERE course_id = '$course_id'";
                     $result_assessments = $conn->query($sql_assessments);
 
                     if ($result_assessments->num_rows > 0) {
-                        echo "<h2>Assessments for Course ID: $course_id</h2>";
+                        echo "<h2>Assessments for Course: $course_name</h2>";
                         echo "<ul>";
 
                         while ($row_assessment = $result_assessments->fetch_assoc()) {
                             $assessment_id = $row_assessment['id'];
                             $assessment_title = $row_assessment['title'];
 
-                            echo "<li><a href='attempt_assessment.php?assessment_id=$assessment_id'>$assessment_title</a></li>";
+                            echo "<li><a href='attempt_assessment.php?assessment_id=$assessment_id' class='assessment-link'>$assessment_title</a></li>";
                         }
 
                         echo "</ul>";
                     } else {
-                        echo "<p>No assessments found for Course ID: $course_id</p>";
+                        echo "<p class='no-assessments'>No assessments found for Course: $course_name (ID: $course_id)</p>";
                     }
                 }
+                echo "</div>"; 
             } else {
-                echo "<p>You are not enrolled in any courses.</p>";
+                echo "<p class='no-enrollment'>You are not enrolled in any courses.</p>";
             }
         } else {
-            echo "<p>User not found.</p>";
+            echo "<p class='no-user'>User not found.</p>";
         }
     } else {
-        echo "<p>You are not logged in.</p>";
+        echo "<p class='not-logged-in'>You are not logged in.</p>";
     }
     ?>
 

@@ -16,7 +16,7 @@ label {
 }
 
 .question {
-  margin-bottom: 40px; /* Increased spacing after each question */
+  margin-bottom: 40px;
 }
 
 input[type="text"],

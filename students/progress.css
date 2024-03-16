@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 50px;
+  height: auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+
+ul {
+  list-style-type: square;
+  padding: 0;
+  margin: 15px;
+  size: 5px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: double;
+  color: #4bee06;
+}
+
+a:hover {
+  color: none;
+}
