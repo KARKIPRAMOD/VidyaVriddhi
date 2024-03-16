@@ -27,15 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $document = uploadDocument();
         $profilePicture = uploadEprofile();
         $password1 = password_hash($password, PASSWORD_DEFAULT);
+        $username = $_POST['eemail'];
+        $password = $_POST['epassword'];
 
         $sql = "INSERT INTO expert (fname,lname,email,address, pnum, password,profession,institution, profile_picture,document,description) 
                 VALUES ('$efname','$elname','$eemail','$eaddress', '$econtact', '$password1', '$eprofession','$einstitution','$profilePicture','$document', '$edes')";
-        // $conn->query($sql);
         if ($conn->query($sql) === TRUE) {
-            login_credentials($conn);
-            header("location:/register/register.php");
+            login_ecredentials($conn,$username,$password);
+            header("location:./register/register.php");
             echo "Expertise registered successfully<br>";
-
 
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
@@ -47,7 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 function login_credentials($conn)
 {
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST['email'];
         $password = $_POST['password'];
@@ -61,9 +60,22 @@ function login_credentials($conn)
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
         $conn->close();
-
     }
+}
+function login_ecredentials($conn,$username,$password)
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $type = $_GET['type'];
 
+        $sql = "INSERT INTO login_credentials (username, password, type) 
+                      VALUES ('$username', '$password', '$type')";
+        if ($conn->query($sql) === TRUE) {
+            echo "Login credentials stored successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        $conn->close();
+    }
 }
 
 function uploadLprofile()
@@ -74,7 +86,6 @@ function uploadLprofile()
     $unique = uniqid();
     $target_file = $target_dir . $unique;
     $target_file1 = $target_dir1 . $unique;
-    // $imageFileType = strtolower(pathinfo($_FILES["profilePic"]["name"], PATHINFO_EXTENSION));
     if (move_uploaded_file($_FILES["pimg"]["tmp_name"], $target_file)) {
         return $target_file1;
     } else {
@@ -90,7 +101,6 @@ function uploadEprofile()
     $unique = uniqid();
     $target_file = $target_dir . $unique;
     $target_file1 = $target_dir1 . $unique;
-    // $imageFileType = strtolower(pathinfo($_FILES["profilePic"]["name"], PATHINFO_EXTENSION));
     if (move_uploaded_file($_FILES["epimg"]["tmp_name"], $target_file)) {
         return $target_file1;
     } else {
@@ -106,7 +116,6 @@ function uploadDocument()
     $unique = uniqid();
     $target_file = $target_dir . $unique;
     $target_file1 = $target_dir1 . $unique;
-    // $imageFileType = strtolower(pathinfo($_FILES["profilePic"]["name"], PATHINFO_EXTENSION));
     if (move_uploaded_file($_FILES["edoc"]["tmp_name"], $target_file)) {
         return $target_file1;
     } else {
