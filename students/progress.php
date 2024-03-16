@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assessments</title>
     <link rel="stylesheet" href="progress.css">
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; 
+        }
+
+        .left-column {
+            width: 45%; 
+            padding: 20px;
+            border:solid;
+            box-sizing: border-box;
+        }
+
+        .right-column {
+            width: 45%; 
+            padding: 20px;
+            border:solid;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
     <?php
@@ -31,7 +52,7 @@
                 $course_name = $row_course_name['course_name'];
 
                 echo "<div class='container'>";
-                echo "<div class='column'>";
+                echo "<div class='left-column'>";
                 echo "<h2>Assessments for Course: $course_name</h2>";
 
                 $sql_unattempted = "SELECT a.id, a.title, a.passing_score 
@@ -55,7 +76,7 @@
                 }
                 echo "</div>"; 
 
-                echo "<div class='column'>";
+                echo "<div class='right-column'>";
                 echo "<h2>Attempted Assessments</h2>";
 
                 $sql_attempted = "SELECT a.title, a.passing_score, ar.score, ar.passed 
@@ -80,6 +101,8 @@
                         echo "</li>";
                     }
                     echo "</ul>";
+                    echo '<a href="certificate.php" class="button-28">Certificate</a>';
+
                 } else {
                     echo "<p class='no-assessments'>No attempted assessments found for Course: $course_name (ID: $course_id)</p>";
                 }

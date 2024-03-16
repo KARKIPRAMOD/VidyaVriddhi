@@ -31,8 +31,6 @@
 
         if (isset($_GET['assessment_id'])) {
             $assessment_id = $_GET['assessment_id'];
-            echo "<p>Assessment ID: $assessment_id</p>";
-
             $sql = "SELECT a.*, q.id AS question_id, q.question_text, q.option1, q.option2, q.option3, q.option4, q.correct_option, a.passing_score
                     FROM assessments a
                     INNER JOIN questions q ON a.id = q.assessment_id
