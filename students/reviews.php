@@ -4,44 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Reviews</title>
-    <?php include_once('../database/db_connect.php'); ?>
+    <?php
+        include_once('../database/db_connect.php');
+    ?>
 </head>
 <body>
     <h1>Course Reviews</h1>
     <?php
-    $course_id = $_GET['course_id'];
 
-    $sql = "SELECT * FROM Courses WHERE course_id = $course_id";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $course = $result->fetch_assoc();
-        $course_name = $course['course_name'];
-        $course_description = $course['course_description'];
-        $course_image = $course['course_image'];
-    } else {
-        echo "Course not found";
-        exit;
+$course_id = $_GET['course_id'];
+
+$sql = "SELECT * FROM Courses WHERE course_id = $course_id";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    $course = $result->fetch_assoc();
+    $course_name = $course['course_name'];
+    $course_description = $course['course_description'];
+    $course_image = $course['course_image'];
+} else {
+    echo "Course not found";
+    exit;
+}
+
+$sql = "SELECT r.rating, r.review_text, l.fname, l.id ,l.profile_picture
+        FROM Reviews r
+        JOIN learner l ON r.learner_id = l.id
+        WHERE r.course_id = $course_id";
+
+
+$result = $conn->query($sql);
+$reviews = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $reviews[] = $row;
     }
-
-    $sql = "SELECT r.rating, r.review_text, l.fname, l.id as learner_id
-            FROM Reviews r
-            JOIN learner l ON r.learner_id = l.id
-            WHERE r.course_id = $course_id";
-
-    $result = $conn->query($sql);
-    $reviews = [];
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $learner_id = $row['learner_id'];
-            $sql_profile = "SELECT profile_picture FROM learner WHERE id = $learner_id";
-            $result_profile = $conn->query($sql_profile);
-            $profile_row = $result_profile->fetch_assoc();
-            $row['profile_picture'] = $profile_row['profile_picture'];
-
-            $reviews[] = $row;
-        }
-    }
-    ?>
+}
+?>
     <div class="course-details">
         <img src="<?php echo $course_image; ?>" alt="<?php echo $course_name; ?>">
         <h1><?php echo $course_name; ?></h1>
@@ -55,15 +53,13 @@
         } else {
             foreach ($reviews as $review) {
                 echo "<div class='review'>";
-                echo "<img src='{$review['profile_picture']}' class='logo-img'>";
+                echo "<img src='{$review['profile_picture']}'  class='profile-picture'>";
                 echo "<p><strong>Rating:</strong> {$review['rating']}</p>";
                 echo "<p><strong>Review:</strong> {$review['review_text']}</p>";
                 echo "<p><strong>Student:</strong> {$review['fname']}</p>";
                 echo "</div>";
             }
         } ?>
-    </div>
-
     <h3>Add a Review</h3>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <input type="hidden" name="course_id" value="<?php echo $course_id; ?>">
