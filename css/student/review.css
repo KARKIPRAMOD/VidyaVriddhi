@@ -1,0 +1,119 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+}
+
+.containers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background-color: rgb(167, 170, 169);
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 95%;
+  padding-bottom: 10px;
+  border: solid;
+  border-radius: 15px;
+}
+
+.container_course ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.container_course ul img {
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+}
+.container_course ul .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.container_review {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  width: 750px;
+  height: auto;
+  padding: 40px;
+  border: solid;
+  border-radius: 10px;
+  background-color: azure;
+}
+.detail {
+  display: flex;
+  flex-direction: row;
+  justify-self: flex-start;
+  align-items: center;
+  gap: 15px;
+  width: 80%;
+  background-color: azure;
+  height: auto;
+}
+.user_details {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.user_details img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+.message {
+  width: 100%;
+}
+.message input {
+  width: 100%;
+  height: 40px;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.star {
+  display: flex;
+  width: 20%;
+  height: auto;
+  background-color: rgb(168, 28, 28);
+}
+
+.container_comment {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  height: 20vh;
+  background-color: rgb(255, 255, 255);
+  gap: 15px;
+  border-radius: 15px;
+}
+
+.container_comment textarea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.container_comment button {
+  width: 15%;
+  border-radius: 15px;
+}

@@ -1,6 +1,6 @@
 <?php
-include_once('student_header.php');
-include_once('../database/db_connect.php');
+include_once ('student_header.php');
+include_once ('../database/db_connect.php');
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +48,7 @@ include_once('../database/db_connect.php');
                 echo '<h2>' . $row["course_name"] . '</h2>';
                 echo '<p>Contributors: ' . $row["total_contributors"] . '</p>';
                 echo '<p>Resources: ' . $row["total_resources"] . '</p>';
-                echo '<a href="reviews.php?course_id=' . $row["course_id"] . ' " class="button-28">Reviews</a>';
+                echo '<a href="review.php?course_id=' . $row["course_id"] . ' " class="button-28">Reviews</a>';
                 if ($row["is_enrolled"]) {
                     echo '<a href="progress.php?course_id=' . $row["course_id"] . '" class="button-28">Progress</a>';
                 } else {

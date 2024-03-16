@@ -285,6 +285,7 @@ input:focus {
 .container_img {
   display: flex;
   flex-direction: column;
+  gap: 15px;
   height: 100px;
   width: 550px;
   padding: 5px;

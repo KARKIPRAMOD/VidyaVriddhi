@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO expert (fname,lname,email,address, pnum, password,profession,institution, profile_picture,document,description) 
                 VALUES ('$efname','$elname','$eemail','$eaddress', '$econtact', '$password1', '$eprofession','$einstitution','$profilePicture','$document', '$edes')";
         if ($conn->query($sql) === TRUE) {
-            login_ecredentials($conn,$username,$password);
+            login_ecredentials($conn, $username, $password);
             header("location:./register/register.php");
             echo "Expertise registered successfully<br>";
 
@@ -58,7 +58,7 @@ function login_credentials($conn)
     }
 }
 
-function login_ecredentials($conn,$username,$password)
+function login_ecredentials($conn, $username, $password)
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $type = $_GET['type'];
