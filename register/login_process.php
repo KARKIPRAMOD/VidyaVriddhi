@@ -22,6 +22,9 @@
             } elseif ($userType === 'expertise') {
                 header("Location: ../expertise/expertise_header.php?username=$username"); 
                 exit();
+            }elseif ($userType === 'admin') {
+                header("Location: ../admin/admin_header.php?username=$username"); 
+                exit();
             }
             
         } else {

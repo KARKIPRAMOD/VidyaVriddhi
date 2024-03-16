@@ -4,7 +4,6 @@ session_start();
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
     $sql = "SELECT fname, profile_picture FROM learner WHERE email = '$username'";
-    $sql = "SELECT fname, profile_picture FROM learner WHERE email = '$username'";
     $result = $conn->query($sql);
     if ($result) {
         if ($result->num_rows > 0) {
@@ -21,7 +20,6 @@ if (isset($_SESSION['username'])) {
     echo "Username session variable is not set.";
 }
 
-$userNameDisplay = isset($fname) ? $fname : 'User';
 $userNameDisplay = isset($fname) ? $fname : 'User';
 ?>
 
@@ -45,7 +43,7 @@ $userNameDisplay = isset($fname) ? $fname : 'User';
             <i class="fas fa-times"></i>
         </div>
         <div class="profile">
-            <img src="../uploads/profile/<?php echo $profile; ?>" alt="Profile Picture">
+            <img src="<?php echo $profile; ?>" alt="Profile Picture">
             <h3>
                 <?php echo $userNameDisplay; ?>
             </h3>

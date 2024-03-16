@@ -9,7 +9,6 @@ if (isset($_SESSION['username'])) {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $expertise_id = $row['id'];
-            echo "Expertise ID: " . $expertise_id . "<br>"; // Debugging output
         } else {
             echo "No rows returned from the database for username: $username";
         }
@@ -22,7 +21,6 @@ if (isset($_SESSION['username'])) {
 
 if (isset ($_GET['course_id'])) {
     $course_id = $_GET['course_id'];
-    echo "Course ID: " . $course_id . "<br>"; 
 } else {
     echo "Course ID is not provided!";
     exit(); 

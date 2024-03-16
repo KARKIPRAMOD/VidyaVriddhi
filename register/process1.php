@@ -19,9 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
 
-
-
-
     } elseif ($_GET['type'] == 'expertise') {
         extract($_POST);
         $document = uploadDocument();
@@ -41,8 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
-
-
 }
 
 function login_credentials($conn)
@@ -62,6 +57,7 @@ function login_credentials($conn)
         $conn->close();
     }
 }
+
 function login_ecredentials($conn,$username,$password)
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -80,14 +76,11 @@ function login_ecredentials($conn,$username,$password)
 
 function uploadLprofile()
 {
-
-    $target_dir = "../uploads/";
-    $target_dir1 = "uploads/profile";
+    $target_dir = "../uploads/profile/";
     $unique = uniqid();
     $target_file = $target_dir . $unique;
-    $target_file1 = $target_dir1 . $unique;
     if (move_uploaded_file($_FILES["pimg"]["tmp_name"], $target_file)) {
-        return $target_file1;
+        return $target_file;
     } else {
         return 0;
     }
@@ -95,14 +88,11 @@ function uploadLprofile()
 
 function uploadEprofile()
 {
-
-    $target_dir = "../uploads/";
-    $target_dir1 = "uploads/profile";
+    $target_dir = "../uploads/profile/";
     $unique = uniqid();
     $target_file = $target_dir . $unique;
-    $target_file1 = $target_dir1 . $unique;
     if (move_uploaded_file($_FILES["epimg"]["tmp_name"], $target_file)) {
-        return $target_file1;
+        return $target_file;
     } else {
         return 0;
     }
@@ -110,15 +100,13 @@ function uploadEprofile()
 
 function uploadDocument()
 {
-
-    $target_dir = "../uploads/";
-    $target_dir1 = "uploads/profile";
+    $target_dir = "../uploads/profile/";
     $unique = uniqid();
     $target_file = $target_dir . $unique;
-    $target_file1 = $target_dir1 . $unique;
     if (move_uploaded_file($_FILES["edoc"]["tmp_name"], $target_file)) {
-        return $target_file1;
+        return $target_file;
     } else {
         return 0;
     }
 }
+?>
