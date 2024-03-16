@@ -11,7 +11,7 @@
 <header class="header">  
         <section class="sec">
             <div class="logo-container">
-                <a href="admin_header.php">
+                <a href="courses.php">
                 <img src="../images/logo.png" alt="Vidya Vriddhi" class="logo-img">
                 </a>
             </div>

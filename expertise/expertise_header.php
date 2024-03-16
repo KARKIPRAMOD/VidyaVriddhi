@@ -1,3 +1,27 @@
+<?php
+include '../database/db_connect.php';
+session_start();
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    $sql = "SELECT fname, profile_picture FROM expert WHERE email = '$username'";
+    $result = $conn->query($sql);
+    if ($result) {
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $fname = $row['fname'];
+            $profile = $row['profile_picture'];
+        } else {
+            echo "No rows returned from the database for username: $username";
+        }
+    } else {
+        echo "Query execution failed: " . $conn->error;
+    }
+} else {
+    echo "Username session variable is not set.";
+}
+$userNameDisplay = isset($fname) ? $fname : 'User';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,14 +32,13 @@
     </header>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/admin/admin_header.css">
-
 </head>
 
 <body>
     <header class="header">
         <section class="sec">
             <div class="logo-container">
-                <a href="home.php">
+                <a href="expertise_header.php">
                     <img src="../images/logo.png" alt="Vidya Vriddhi" class="logo-img">
                 </a>
             </div>
@@ -35,10 +58,12 @@
             <i class="fas fa-times"></i>
         </div>
         <div class="profile">
-            <img src="" alt="">
-            <h3>User</h3>
+            <img src="<?php echo $profile; ?>" alt="Profile Picture">
+            <h3>
+                <?php echo $userNameDisplay; ?>
+            </h3>
             <span>Expertise</span>
-            <a href="ex_profile.php" class="btn">view profile</a>
+            <a href="student_profile.php" class="btn">View Profile</a>
         </div>
         <nav class="navbar">
             <a href="home.php"><i class="fas fa-home"></i><span>home</span></a>
