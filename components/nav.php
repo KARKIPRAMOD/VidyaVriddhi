@@ -11,7 +11,7 @@ if (!isset ($_SESSION['username'])) {
 
     $notifysql = "SELECT * from notification limit 5";
     $result = $conn->query($notifysql);
-    $sql = "SELECT fname, profile_picture FROM learner WHERE email = '$username'";
+    $sql = "SELECT fname, profile_picture FROM learner WHERE email = '$email'";
     $result = $conn->query($sql);
     if ($result) {
         if ($result->num_rows > 0) {
@@ -19,7 +19,7 @@ if (!isset ($_SESSION['username'])) {
 
             $profile = $row['profile_picture'];
         } else {
-            echo "No rows returned from the database for username: $username";
+            echo "No rows returned from the database for username: $email";
         }
     } else {
         echo "Query execution failed: " . $conn->error;
