@@ -1,7 +1,7 @@
 <?php
 include '../database/db_connect.php';
 session_start();
-if (isset($_SESSION['username'])) {
+if (isset ($_SESSION['username'])) {
     $username = $_SESSION['username'];
     $sql = "SELECT fname, profile_picture FROM learner WHERE email = '$username'";
     $result = $conn->query($sql);
@@ -20,7 +20,7 @@ if (isset($_SESSION['username'])) {
     echo "Username session variable is not set.";
 }
 
-$userNameDisplay = isset($fname) ? $fname : 'User';
+$userNameDisplay = isset ($fname) ? $fname : 'User';
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ $userNameDisplay = isset($fname) ? $fname : 'User';
 
 <body>
     <?php
-    include_once('../components/nav.php');
+    include_once ('../components/nav.php');
     ?>
     <div class="side-bar">
         <div class="close-side-bar">

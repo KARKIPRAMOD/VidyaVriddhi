@@ -69,7 +69,7 @@
             echo "<p>{$review['fname']}</p>";
             echo "</div>";
             echo "<div class='message'>";
-            echo "<input type='text' class='message' {$review['review_text']}/> ";
+            echo "<input type='text' class='message' placeholder='{$review['review_text']}'/> ";
             echo "</div>";
             echo "</div>";
             echo "<div class='star'>";

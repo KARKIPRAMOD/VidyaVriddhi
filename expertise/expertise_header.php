@@ -1,15 +1,16 @@
 <?php
 include '../database/db_connect.php';
 session_start();
-if (isset($_SESSION['username'])) {
+if (isset ($_SESSION['username'])) {
     $username = $_SESSION['username'];
-    $sql = "SELECT fname, profile_picture FROM expert WHERE email = '$username'";
+    $sql = "SELECT fname, profile_picture,document FROM expert WHERE email = '$username'";
     $result = $conn->query($sql);
     if ($result) {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $fname = $row['fname'];
             $profile = $row['profile_picture'];
+            $document = $row['document'];
         } else {
             echo "No rows returned from the database for username: $username";
         }
@@ -19,7 +20,7 @@ if (isset($_SESSION['username'])) {
 } else {
     echo "Username session variable is not set.";
 }
-$userNameDisplay = isset($fname) ? $fname : 'User';
+$userNameDisplay = isset ($fname) ? $fname : 'User';
 ?>
 
 <!DOCTYPE html>
@@ -35,35 +36,20 @@ $userNameDisplay = isset($fname) ? $fname : 'User';
 </head>
 
 <body>
-    <header class="header">
-        <section class="sec">
-            <div class="logo-container">
-                <a href="expertise_header.php">
-                    <img src="../images/logo.png" alt="Vidya Vriddhi" class="logo-img">
-                </a>
-            </div>
-            <form action="" method="POST" class="form">
-                <input type="text" placeholder="search course">
-                <button type="submit" class="fas fa-search" name="search_box"></button>
-            </form>
-            <div class="icons">
-                <div id="menu_btn" class="fas fa-bars"></div>
-                <div id="search_btn" class="fas fa-search"></div>
-                <div id="user_btn" class="fas fa-user"></div>
-            </div>
-        </section>
-    </header>
+    <?php
+    include_once ('../components/ex_nav.php');
+    ?>
     <div class="side-bar">
         <div class="close-side-bar">
             <i class="fas fa-times"></i>
         </div>
         <div class="profile">
-            <img src="<?php echo $profile; ?>" alt="Profile Picture">
+            <img src="<?php echo $document; ?>" alt="Profile Picture">
             <h3>
                 <?php echo $userNameDisplay; ?>
             </h3>
             <span>Expertise</span>
-            <a href="student_profile.php" class="btn">View Profile</a>
+            <a href="ex_profile.php" class="btn">View Profile</a>
         </div>
         <nav class="navbar">
             <a href="home.php"><i class="fas fa-home"></i><span>home</span></a>

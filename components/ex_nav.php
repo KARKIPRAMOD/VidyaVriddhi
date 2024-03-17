@@ -11,20 +11,18 @@ if (!isset ($_SESSION['username'])) {
 
     $notifysql = "SELECT * from notification limit 5";
     $result = $conn->query($notifysql);
-    $sql = "SELECT fname, profile_picture FROM learner WHERE email = '$username'";
+    $sql = "SELECT document FROM expert WHERE email = '$username'";
     $result = $conn->query($sql);
     if ($result) {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-
-            $profile = $row['profile_picture'];
+            $document = $row['document'];
         } else {
             echo "No rows returned from the database for username: $username";
         }
     } else {
         echo "Query execution failed: " . $conn->error;
     }
-
 }
 
 ?>
@@ -55,25 +53,6 @@ if (!isset ($_SESSION['username'])) {
 
             <!-- notification popup -->
             <div class="icons">
-                <div class="popup" onclick="togglePopUpMessage()">
-                    <div id="menu_btn" class="fas fa-bell"></div>
-                </div>
-                <div class="popmessage_container" id="popmessage">
-                    <ul>
-                        <?php
-                        while ($row = $result->fetch_assoc()) {
-                            echo '<li class="" id="">' . $row['title'] . '</li>';
-                            echo '<li class="" id="">' . $row['message'] . '</li>';
-                        }
-                        ?>
-                        <?php
-                        while ($row = $result->fetch_assoc()) {
-                            echo '<li class="" id="">' . $row['title'] . '</li>';
-                            echo '<li class="" id="">' . $row['message'] . '</li>';
-                        }
-                        ?>
-                    </ul>
-                </div>
 
                 <div class="popup" onclick="togglePopUpHome()">
 
@@ -81,7 +60,7 @@ if (!isset ($_SESSION['username'])) {
                 </div>
                 <div class="pop_container" id="pophome">
                     <ul>
-                        <li> <img src="<?php echo $profile; ?>"> </li>
+                        <li> <img src="<?php echo $document; ?>"> </li>
                         <li class="" id=""> Profile</li>
                         <li> <a href="../register/logout.php"> Logout </a></li>
                     </ul>
@@ -91,15 +70,9 @@ if (!isset ($_SESSION['username'])) {
     </header>
 
     <script>
-        function togglePopUpMessage() {
-            document.getElementById("popmessage").classList.toggle("show");
-            document.getElementById("pophome").classList.toggle("close-popup");
-
-        }
 
         function togglePopUpHome() {
             document.getElementById("pophome").classList.toggle("show");
-            document.getElementById("popmessage").classList.toggle("close-popup");
 
         }
     </script>

@@ -24,5 +24,5 @@
 //     include 'views/404.php';
 //     http_response_code(404);
 // }
-include './register/login.php';
+include './components/home.php';
 ?>

@@ -86,7 +86,7 @@
 
 <body>
     <?php
-    include_once ('../students/student_header.php');
+    include_once ('../expertise/expertise_header.php');
     ?>
     <div class="aboutme">
         <div class="atitle">

@@ -1,3 +1,36 @@
+<?php
+include '../database/db_connect.php';
+session_start();
+if (isset ($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    $sql = "SELECT * FROM expert WHERE email = '$username'";
+    $result = $conn->query($sql);
+    if ($result) {
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $fname = $row['fname'];
+            $lname = $row['lname'];
+            $email = $row['email'];
+            $contact = $row['pnum'];
+            $address = $row['address'];
+            $profession = $row['profession'];
+            $institution = $row['institution'];
+            $document = $row['document'];
+            $profile = $row['profile_picture'];
+            $dec = $row['description'];
+        } else {
+            echo "No rows returned from the database for username: $username";
+        }
+    } else {
+        echo "Query execution failed: " . $conn->error;
+    }
+} else {
+    echo "Username session variable is not set.";
+}
+$userNameDisplay = isset ($fname) ? $fname : 'User';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,8 +46,10 @@
     <div class="containers_user">
         <div class="container_display">
             <div class="display">
-                <img src="../images/image.png" />
-                <h1 style="color: aliceblue">User name</h1>
+                <img src="<?php echo $document; ?>" />
+                <h1 style="color: aliceblue">
+                    <?php echo $fname . ' ' . $lname; ?>
+                </h1>
                 <label>Contribute:</label>
             </div>
         </div>
@@ -32,15 +67,15 @@
                 <form>
                     <div class="row">
                         <label>First name</label>
-                        <input type="text" name="fname" id="fname" placeholder="user name" />
+                        <input type="text" name="fname" id="fname" placeholder="<?php echo $fname; ?>" />
 
                         <label>Email</label>
-                        <input type="email" name="email" id="email" placeholder="email" />
+                        <input type="email" name="email" id="email" placeholder="<?php echo $email; ?>" />
                     </div>
 
                     <div class="colum">
                         <label>Last name</label>
-                        <input type="text" name="lname" id="lname" placeholder="user last name" />
+                        <input type="text" name="lname" id="lname" placeholder="<?php echo $lname; ?>" />
                     </div>
 
                 </form>
@@ -51,15 +86,15 @@
                         <form>
                             <div class="row">
                                 <label>Address</label>
-                                <input type="text" name="address" id="address" placeholder="user address" />
+                                <input type="text" name="address" id="address" placeholder="<?php echo $address; ?>" />
 
-                                <label>Contact Number</label>
-                                <input type="text" name="pnum" id="pnum" placeholder="phone number" />
+                                <!-- <label>Contact Number</label>
+                                <input type="text" name="pnum" id="pnum" placeholder="<?php echo $contact; ?>" /> -->
                             </div>
 
                             <div class="colum">
                                 <label>Contact Number</label>
-                                <input type="text" name="pnum" id="pnum" placeholder="phone number" />
+                                <input type="text" name="pnum" id="pnum" placeholder="<?php echo $contact; ?>" />
                             </div>
                         </form>
                     </div>
@@ -70,14 +105,17 @@
                         <form>
                             <div class="row">
                                 <label>Profession</label>
-                                <input type="text" name="profession" id="profession" placeholder="profession" />
+                                <input type="text" name="profession" id="profession"
+                                    placeholder="<?php echo $profession; ?>" />
                                 <label>Short Intro</label>
-                                <textarea type="textarea" name="dec" id="dec" placeholder="about"></textarea>
+                                <textarea type="textarea" name="dec" id="dec"
+                                    placeholder="<?php echo $dec; ?>"></textarea>
                             </div>
 
                             <div class="colum">
                                 <label>Instution</label>
-                                <input type="text" name="instution" id="instution" placeholder="Instution" />
+                                <input type="text" name="instution" id="instution"
+                                    placeholder="<?php echo $institution; ?>" />
                             </div>
                         </form>
                     </div>
@@ -87,8 +125,7 @@
                         <h2>Documents/Certificate</h2>
                         <form>
                             <div class="row">
-                                <label>Profession</label>
-                                <input multiple type="file" name="doc" id="doc" placeholder="Document" />
+                                <img src="<?php echo $profile; ?>" />
                                 <!-- <label>Short Intro</label>
                                 <textarea type="textarea" name="dec" id="dec" placeholder="about"></textarea> -->
                             </div>
