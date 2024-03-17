@@ -34,7 +34,7 @@
             $check_row = $check_result->fetch_assoc();
             $has_uploaded_items = $check_row["count"] > 0;
 
-            echo '<div class="course-box2">';
+            echo '<div class="course-box">';
             echo '<a href="../contents/content_generator.php?course_id=' . $row["course_id"] . '">';
             echo '<img src="../images/' . $row["course_image"] . '" alt="' . $row["course_name"] . '">';
             echo '</a>';
