@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="../css/admin/admin_header.css">
     <style>
         body {
-            background-color: white;
+            background-color: white !important;
         }
 
         .aboutme {
             width: 100%;
-            /* padding: 20px;
-            padding-top: 50px; */
+            padding: 20px;
+            padding-top: 50px;
         }
 
         .atitle {

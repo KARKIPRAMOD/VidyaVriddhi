@@ -104,7 +104,7 @@
                 $stmt_insert_result->bind_param('iiiss', $assessment_id, $user_id, $passed, $total_marks, $completion_date);
                 if ($stmt_insert_result->execute()) {
                     echo "<p>Answers submitted and results stored successfully. Total marks: $total_marks</p>";
-                    header("location: progress.php");
+                    header("location: courses.php");
                 } else {
                     echo "Error: " . $conn->error;
                 }

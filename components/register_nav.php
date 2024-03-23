@@ -101,7 +101,7 @@
 
         <div class="low_nav">
             <ul>
-                <li><a href="/components/home.php">Home</a></li>
+                <li><a href="../components/home.php">Home</a></li>
                 <li><a href=""></a>Course</li>
                 <li><a href="../register/login.php">Sign in</a></li>
                 <li><i class="fa-solid fa-user"></i></li>

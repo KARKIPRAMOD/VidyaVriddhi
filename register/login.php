@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../register/login.css">
 </head>
 
 <body>
@@ -26,7 +26,7 @@
                 <button type="submit">Log In</button>
                 <div class="container">
                     <div class="signIn">
-                        <a href="./register.php">Create a New Account</a>
+                        <a href="../register/register.php">Create a New Account</a>
                     </div>
                 </div>
             </form>

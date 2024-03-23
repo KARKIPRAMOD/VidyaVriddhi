@@ -36,7 +36,7 @@ include_once('../database/db_connect.php');
             echo '<h2>' . $row["course_name"] . '</h2>';
             echo '<p>Contributors: ' . $row["total_contributors"] . '</p>';
             echo '<p>Resources: ' . $row["total_resources"] . '</p>';
-            echo '<a href="reviews.php?course_id=' . $row["course_id"] . ' " class="button-28">Reviews</a>';
+            echo '<a href="review.php?course_id=' . $row["course_id"] . ' " class="button-28">Reviews</a>';
             echo '<a href="contribute.php?course_id=' .$row["course_id"] . '" class="button-28">Contribute</a>';
             echo '</div>'; 
             $count++;

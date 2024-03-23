@@ -41,12 +41,9 @@
         </div>
         <nav class="navbar">
             <a href="home.php"><i class="fas fa-home"></i><span>home</span></a>
-            <a href="about.php"><i class="fas fa-question"></i><span>about us</span></a>
             <a href="courses.php"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
             <a href="teachers.php"><i class="fas fa-chalkboard-user"></i><span>Expertise</span></a>
-            <a href="students.php"><i class="fas fa-user"></i><span>Students</span></a>
         </nav>
-
     </div>
 </body>
 

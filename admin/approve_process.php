@@ -25,6 +25,8 @@ if(isset($_POST['approve'])) {
                 $sql_delete_item = "DELETE FROM uploaded_items WHERE id = '$item_id'";
                 if ($conn->query($sql_delete_item) === TRUE) {
                     echo "Resource approved and inserted successfully.";
+                    //  sendNotification($conn, $title, " New Topic added", "/students/course.php");
+
                 } else {
                     echo "Error deleting record: " . $conn->error;
                 }
@@ -41,4 +43,6 @@ if(isset($_POST['approve'])) {
 } else {
     echo "Action not specified.";
 }
+
+
 ?>

@@ -23,7 +23,7 @@ session_start();
                 header("Location: ../expertise/expertise_header.php?username=$username"); 
                 exit();
             }elseif ($userType === 'admin') {
-                header("Location: ../admin/admin_header.php?username=$username"); 
+                header("Location: ../admin/courses.php?username=$username"); 
                 exit();
             }
             

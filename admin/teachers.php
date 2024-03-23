@@ -10,6 +10,8 @@ include_once('../database/db_connect.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/style.css">
+
 </head>
 <body>
 <div class="course-box1">
@@ -30,7 +32,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo '<div class="course-box">';
         echo '<a href="../teachers/' . $row["expertise_id"] . '.php">';
-        echo '<img src="../images/' . $row["teacher_image"] . '" alt="' . $row["teacher_name"] . '">';
+        echo '<img src="../images/' . $row["teacher_image"] . '" alt="' . $row["teacher_name"] . '" class="profile-img">';
         echo '</a>';
         echo '<i class="fas fa-user"></i>';
         echo '<h2>' . $row["teacher_name"] . '</h2>';
